@@ -1,0 +1,6 @@
+@sahibinden_project_HostAddress = http://localhost:5289
+
+GET {{sahibinden_project_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
