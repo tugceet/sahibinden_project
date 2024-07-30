@@ -10,9 +10,12 @@ public class SahibindenDbContext : DbContext
     public DbSet<Listing>? Listings => Set<Listing>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlite("Data Source=sahibinden.db");
-    }
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlite("Data Source=sahibinden.db");
+            }
+        }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
