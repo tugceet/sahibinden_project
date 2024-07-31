@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using sahibinden_project.Services;
 
 namespace sahibinden_project;
 
@@ -8,11 +9,12 @@ public class ListingController : ControllerBase
 {
 
     private readonly ISaveListingService _savelistingservice;
+    private readonly IGetListingsService _getlistingsservice;
 
-
-    public ListingController(ISaveListingService savelistingservice)
+    public ListingController(ISaveListingService savelistingservice, IGetListingsService getlistingsservice)
     {
         _savelistingservice = savelistingservice;
+        _getlistingsservice = getlistingsservice;
     }
 
 
@@ -44,5 +46,17 @@ public class ListingController : ControllerBase
             return StatusCode(500, e.Message);
         }
     }
-    
+
+    [HttpGet()]
+    public async Task<IActionResult> GetListings()
+    {
+        try
+        {
+            return Ok(await _getlistingsservice.GetListings()); 
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.Message);
+        }
+    }
 }

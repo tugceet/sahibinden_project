@@ -1,6 +1,5 @@
 @sahibinden_project_HostAddress = http://localhost:8000
 
-### Kullanıcıları Silmek İçin Get İsteği
 
 GET {{sahibinden_project_HostAddress}}/user/clean
 

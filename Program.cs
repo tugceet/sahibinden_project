@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using sahibinden_project;
+using sahibinden_project.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -18,6 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddScoped<ILoginService, LoginService>();
     builder.Services.AddScoped<IListService, ListService>();
     builder.Services.AddScoped<ISaveListingService, SaveListingService>();
+    builder.Services.AddScoped<IGetListingsService, GetListingsService>();
 }
 
 var app = builder.Build();
