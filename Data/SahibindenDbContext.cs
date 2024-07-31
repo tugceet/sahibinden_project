@@ -6,8 +6,8 @@ public class SahibindenDbContext : DbContext
 {
     public SahibindenDbContext(DbContextOptions<SahibindenDbContext> options) : base(options){ }
 
-    public DbSet<User>? Users => Set<User>();
-    public DbSet<Listing>? Listings => Set<Listing>();
+    public DbSet<User> Users => Set<User>();
+    public DbSet<Listing> Listings => Set<Listing>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -1,0 +1,15 @@
+@sahibinden_project_HostAddress = http://localhost:8000
+
+### Listing Kaydı için POST İsteği
+
+POST {{sahibinden_project_HostAddress}}/listing/save
+Content-Type: application/json
+
+{
+    "Title": "Öğretmenden temiz araba",
+    "Description": "2 parça lokal boya bakımlı",
+    "Category": "Araba",
+    "Price": 500000,
+    "Date": "2021-06-01",
+    "ImageFileName": "araba.jpg"
+}

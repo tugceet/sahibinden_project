@@ -1,0 +1,9 @@
+@sahibinden_project_HostAddress = http://localhost:8000
+@id = 7
+### Kullanıcıları Listelemek için POST İsteği
+
+GET {{sahibinden_project_HostAddress}}/user/list/id/{{id}}
+Content-Type: application/json
+
+
+

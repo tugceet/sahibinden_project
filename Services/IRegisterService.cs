@@ -2,5 +2,5 @@
 
 public interface IRegisterService
 {
-    public void RegisterUser(User user);
+    public Task RegisterUser(RegisterUser user);
 }

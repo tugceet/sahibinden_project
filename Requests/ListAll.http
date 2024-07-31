@@ -1,0 +1,6 @@
+@sahibinden_project_HostAddress = http://localhost:8000
+
+### Kullanıcıları Listelemek için POST İsteği
+
+GET {{sahibinden_project_HostAddress}}/user/list
+
