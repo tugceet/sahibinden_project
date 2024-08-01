@@ -10,11 +10,15 @@ public class ListingController : ControllerBase
 
     private readonly ISaveListingService _savelistingservice;
     private readonly IGetListingsService _getlistingsservice;
+    private readonly IUpdateListingService _updatelistingsservice;
+    private readonly IDeleteService _deletelistingsservice;
 
-    public ListingController(ISaveListingService savelistingservice, IGetListingsService getlistingsservice)
+    public ListingController(ISaveListingService savelistingservice, IGetListingsService getlistingsservice, IUpdateListingService updateListingService, IDeleteService deleteService)
     {
         _savelistingservice = savelistingservice;
         _getlistingsservice = getlistingsservice;
+        _updatelistingsservice = updateListingService;
+        _deletelistingsservice = deleteService;
     }
 
     
@@ -91,7 +95,7 @@ public class ListingController : ControllerBase
     {
         try
         {
-            await _getlistingsservice.DeleteListingById(id);
+            await _deletelistingsservice.DeleteListingById(id);
             return Ok($"Listing with ID {id} deleted successfully.");
         }
         catch (Exception e)
@@ -120,7 +124,7 @@ public class ListingController : ControllerBase
 
         try
         {
-            await _getlistingsservice.UpdateListing(id, updatedListing);
+            await _updatelistingsservice.UpdateListing(id, updatedListing);
             return Ok($"Listing with ID {id} updated successfully.");
         }
         catch (Exception e)

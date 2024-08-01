@@ -35,32 +35,6 @@ namespace sahibinden_project.Services
             }
             return listing;
         }
-
-        public async Task DeleteListingById(int id)
-        {
-            var listing = await _db.Listings.FindAsync(id);
-            if (listing != null)
-            {
-                _db.Listings.Remove(listing);
-                await _db.SaveChangesAsync();
-            }
-        }
-
-        public async Task UpdateListing(int id, SaveListing updatedListing)
-        {
-            var listing = await _db.Listings.FindAsync(id);
-            if (listing != null)
-            {
-                listing.Category = updatedListing.Category;
-                listing.Title = updatedListing.Title;
-                listing.Description = updatedListing.Description;
-                listing.Date = updatedListing.Date;
-                listing.Price = updatedListing.Price;
-                listing.ImageFileName = updatedListing.ImageFileName;
-
-                _db.Listings.Update(listing);
-                await _db.SaveChangesAsync();
-            }
-        }
+   
     }
 }

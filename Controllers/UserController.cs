@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using sahibinden_project.Services;
 namespace sahibinden_project.DTOs;
 
 [ApiController]
@@ -8,13 +9,18 @@ public class UserController : ControllerBase
     private readonly IRegisterService _registerService;
     private readonly ILoginService _loginService;
     private readonly IListService _listService;
+    private readonly IDeleteService _deleteService;
+    
     
 
-    public UserController(IRegisterService registerService, ILoginService loginService, IListService listService)
+    public UserController(IRegisterService registerService, ILoginService loginService, IListService listService, IDeleteService deleteService
+       )
     {
         _registerService = registerService;
         _loginService = loginService;
         _listService = listService;
+        _deleteService = deleteService;
+       
     }
 
     [HttpPost()]
@@ -115,7 +121,7 @@ public class UserController : ControllerBase
     {
         try
         {
-            await _listService.Clean();
+            await _deleteService.Clean();
             return Ok("Database cleaned");
         }
         catch (Exception e)
@@ -129,7 +135,7 @@ public class UserController : ControllerBase
     {
         try
         {
-        await _listService.DeleteUserById(id);
+        await _deleteService.DeleteUserById(id);
         return Ok($"User with ID {id} deleted successfully.");
         }
         catch (Exception e)
@@ -143,7 +149,7 @@ public class UserController : ControllerBase
     {
         try
         {
-            await _listService.DeleteUserByUsername(username);
+            await _deleteService.DeleteUserByUsername(username);
             return Ok($"User with username {username} deleted successfully.");
         }
         catch (Exception e)
