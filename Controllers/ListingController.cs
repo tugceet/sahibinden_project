@@ -17,7 +17,7 @@ public class ListingController : ControllerBase
         _getlistingsservice = getlistingsservice;
     }
 
-
+    
     [HttpPost("save")]
     public async Task<IActionResult> SaveListing([FromBody] SaveListing listing)
     {
@@ -58,5 +58,76 @@ public class ListingController : ControllerBase
         {
             return StatusCode(500, e.Message);
         }
+    }   
+
+    [HttpGet("id/{id}")]
+    public async Task<IActionResult> GetListing(int id)
+    {
+        try
+        {
+            return Ok(await _getlistingsservice.GetListing(id));
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.Message);
+        }
     }
+
+    [HttpGet("category/{category}")]
+    public async Task<IActionResult> GetListing(string Category)
+    {
+        try
+        {
+            return Ok(await _getlistingsservice.GetListing(Category));
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.Message);
+        }
+    }
+
+    [HttpDelete("id/{id}")]
+    public async Task<IActionResult> DeleteListingById(int id)
+    {
+        try
+        {
+            await _getlistingsservice.DeleteListingById(id);
+            return Ok($"Listing with ID {id} deleted successfully.");
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.Message);
+        }
+    }
+
+    [HttpPut("id/{id}")]
+    public async Task<IActionResult> UpdateListing(int id, [FromBody] SaveListing updatedListing)
+    {
+        if (updatedListing == null)
+        {
+            return BadRequest("Invalid listing data");
+        }
+
+        if (string.IsNullOrEmpty(updatedListing.Category) ||
+            string.IsNullOrEmpty(updatedListing.Title) ||
+            string.IsNullOrEmpty(updatedListing.Description) ||
+            string.IsNullOrEmpty(updatedListing.Date.ToString()) ||
+            updatedListing.Price < 0 ||
+            string.IsNullOrEmpty(updatedListing.ImageFileName))
+        {
+            return BadRequest("Required data is missing");
+        }
+
+        try
+        {
+            await _getlistingsservice.UpdateListing(id, updatedListing);
+            return Ok($"Listing with ID {id} updated successfully.");
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.Message);
+        }
+    }
+
+
 }

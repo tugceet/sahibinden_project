@@ -15,4 +15,5 @@ public record class User
     public string PhoneNumber { get; set; } = String.Empty;
     public List<Listing>? Listings { get; set; }
     public bool IsAdmin { get; set; }
+
 }

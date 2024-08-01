@@ -1,6 +1,6 @@
 @sahibinden_project_HostAddress = http://localhost:8000
 
-### Kullanıcı Login için POST İsteği
+
 
 POST {{sahibinden_project_HostAddress}}/user/login
 Content-Type: application/json

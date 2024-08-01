@@ -6,5 +6,7 @@ public interface IListService
     Task<User> GetUser(int id);
     Task<User> GetUser(string username);
     Task Clean();
-    
+    Task DeleteUserById(int id);
+    Task DeleteUserByUsername(string username);
+
 }

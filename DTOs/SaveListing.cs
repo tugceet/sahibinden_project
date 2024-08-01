@@ -6,10 +6,10 @@ public record class SaveListing
     public string Title { get; set; }
     public string Description { get; set; }
     public int Price { get; set; }
-    public DateTime Date { get; set; }
+    public string Date { get; set; }
     public string ImageFileName { get; set; }
 
-    public SaveListing(string category, string title, string description, int price, DateTime date, string imageFileName)
+    public SaveListing(string category, string title, string description, int price, string date, string imageFileName)
     {
         Category = category;
         Title = title;

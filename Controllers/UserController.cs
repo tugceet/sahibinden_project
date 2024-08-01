@@ -2,13 +2,13 @@
 namespace sahibinden_project.DTOs;
 
 [ApiController]
-[Route("[controller]")]
+[Route("[controller]/[action]")]
 public class UserController : ControllerBase
 {
     private readonly IRegisterService _registerService;
     private readonly ILoginService _loginService;
     private readonly IListService _listService;
-
+    
 
     public UserController(IRegisterService registerService, ILoginService loginService, IListService listService)
     {
@@ -17,7 +17,7 @@ public class UserController : ControllerBase
         _listService = listService;
     }
 
-    [HttpPost("register")]
+    [HttpPost()]
     public async Task<IActionResult> Register([FromBody] RegisterUser user)
     {
         if (user == null)
@@ -47,7 +47,7 @@ public class UserController : ControllerBase
 
     }
 
-    [HttpPost("login")]
+    [HttpPost()]
     public async Task<IActionResult> Login([FromBody] LoginUser user)
     {
         if (user == null)
@@ -71,7 +71,7 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpGet("list")]
+    [HttpGet()]
     public async Task<IActionResult> List()
     {
         try
@@ -84,7 +84,7 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpGet("list/id/{id}")]
+    [HttpGet("id/{id}")]
     public async Task<IActionResult> List(int id)
     {
         try
@@ -97,7 +97,7 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpGet("list/username/{username}")]
+    [HttpGet("username/{username}")]
     public async Task<IActionResult> List(string username)
     {
         try
@@ -110,13 +110,41 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpGet("clean")]
+    [HttpGet()]
     public async Task<IActionResult> Clean()
     {
         try
         {
             await _listService.Clean();
             return Ok("Database cleaned");
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.Message);
+        }
+    }
+
+    [HttpDelete("id/{id}")]
+    public async Task<IActionResult> DeleteUserById(int id)
+    {
+        try
+        {
+        await _listService.DeleteUserById(id);
+        return Ok($"User with ID {id} deleted successfully.");
+        }
+        catch (Exception e)
+        {
+        return StatusCode(500, e.Message);
+        }
+    }
+
+    [HttpDelete("username/{username}")]
+    public async Task<IActionResult> DeleteUserByUsername(string username)
+    {
+        try
+        {
+            await _listService.DeleteUserByUsername(username);
+            return Ok($"User with username {username} deleted successfully.");
         }
         catch (Exception e)
         {
