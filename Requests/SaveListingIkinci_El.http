@@ -1,0 +1,17 @@
+@sahibinden_project_HostAddress = http://localhost:8000
+
+
+POST {{sahibinden_project_HostAddress}}/listing/saveikinciel
+Content-Type: application/json
+
+{
+    "Title": "Hiç giyilmemiş Gelinlik",
+    "Description": "Tüllü straplez kocamdan ayrıldım satıyorum",
+    "Category": "İkinci El",
+    "Price": 500000,
+    "Date": "2021-06-01",
+    "ImageFileName": "gelinlik.jpg",
+    "Brand": "Vakko",
+    "Type": "Giyim",
+    "Condition": "Yeni"
+}

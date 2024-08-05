@@ -2,5 +2,7 @@
 
 public interface ISaveListingService
 {
-    public Task SaveListing(SaveListing listingDto);
+    public Task SaveListingCar(CarListing carListing);
+    public Task SaveListinProperty(PropertyListing propertyListing);
+    public Task SaveListingIkinci_El(Ikinci_ElListing ikinci_ElListing);
 }

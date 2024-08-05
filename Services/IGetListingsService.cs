@@ -5,8 +5,6 @@
         public Task<List<Listing>> GetListings();
         public Task<Listing> GetListing(int id);
         public Task<Listing> GetListing(string Category);
- 
-
-
+        public Task<Listing> GetListingBrand(string Brand);
     }
 }

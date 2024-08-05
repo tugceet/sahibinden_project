@@ -1,0 +1,20 @@
+@sahibinden_project_HostAddress = http://localhost:8000
+
+
+POST {{sahibinden_project_HostAddress}}/listing/saveproperty
+Content-Type: application/json
+
+{
+    "Title": "Öğretmenden temiz Ev",
+    "Description": "Merkeze yakın öğretmen evi",
+    "Category": "Emlak",
+    "Price": 500000,
+    "Date": "2021-06-01",
+    "ImageFileName": "ev.jpg",
+    "M2": 100,
+    "RoomCount": 3,
+    "Age": 5,
+    "Floor": 2,
+    "HeatingType": "Kombi",
+    "BuildingType": "Betonarme"
+}

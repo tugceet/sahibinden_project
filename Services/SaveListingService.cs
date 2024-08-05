@@ -10,19 +10,21 @@ public class SaveListingService : ISaveListingService
     }
 
 
-    public async Task SaveListing(SaveListing listingDto)
+    public async Task SaveListingCar(CarListing carListing)
     {
-        var listing = new Listing
-        {
-            Category = listingDto.Category,
-            Title = listingDto.Title,
-            Description = listingDto.Description,
-            Price = listingDto.Price,
-            Date = listingDto.Date,
-            ImageFileName = listingDto.ImageFileName
-        };
+        _db.CarListings.Add(carListing);
+        await _db.SaveChangesAsync();
+    }
 
-        _db.Listings.Add(listing);
+    public async Task SaveListingProperty(PropertyListing propertyListing)
+    {
+        _db.PropertyListings.Add(propertyListing);
+        await _db.SaveChangesAsync();
+    }
+
+    public async Task SaveListingIkinci_El(Ikinci_ElListing ikinci_ElListing)
+    {
+        _db.Ikinci_ElListings.Add(ikinci_ElListing);
         await _db.SaveChangesAsync();
     }
 

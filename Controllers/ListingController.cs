@@ -22,28 +22,111 @@ public class ListingController : ControllerBase
     }
 
     
-    [HttpPost("save")]
-    public async Task<IActionResult> SaveListing([FromBody] SaveListing listing)
+    [HttpPost("savecar")]
+    public async Task<IActionResult> SaveListingCar([FromBody] CarListing carListing)
     {
-        if (listing == null)
+        if (carListing == null)
         {
             return BadRequest("Invalid listing data");
         }
 
-        if (string.IsNullOrEmpty(listing.Category) ||
-            string.IsNullOrEmpty(listing.Title) ||
-            string.IsNullOrEmpty(listing.Description) ||
-            string.IsNullOrEmpty(listing.Date.ToString()) ||
-            int.IsNegative(listing.Price) ||
-            string.IsNullOrEmpty(listing.ImageFileName))
+        if (string.IsNullOrEmpty(carListing.Category) ||
+            carListing.Category != "Araba" ||
+            string.IsNullOrEmpty(carListing.Title) ||
+            string.IsNullOrEmpty(carListing.Description) ||
+            string.IsNullOrEmpty(carListing.Date.ToString()) ||
+            carListing.Price < 0 ||
+            string.IsNullOrEmpty(carListing.ImageFileName) ||
+            string.IsNullOrEmpty(carListing.Brand) ||
+            string.IsNullOrEmpty(carListing.Model) ||
+            carListing.Year <= 0||
+            carListing.Km <= 0||
+            string.IsNullOrEmpty(carListing.Color) ||
+            string.IsNullOrEmpty(carListing.FuelType) ||
+            string.IsNullOrEmpty(carListing.GearType) ||
+            carListing.EngineSize <= 0||
+            carListing.HorsePower <= 0
+            )
         {
             return BadRequest("Required data is missing");
         }
 
         try
         {
-            await _savelistingservice.SaveListing(listing);
-            return Ok("Listing saved successfully" + listing);
+            await _savelistingservice.SaveListingCar(carListing);
+            return Ok("Listing saved successfully.");
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.Message);
+        }
+    }
+
+    [HttpPost("saveproperty")]
+    public async Task<IActionResult> SaveListingProperty([FromBody] PropertyListing propertyListing)
+    {
+        if (propertyListing == null)
+        {
+            return BadRequest("Invalid listing data");
+        }
+
+        if (string.IsNullOrEmpty(propertyListing.Category) ||
+            propertyListing.Category != "Emlak" ||
+            string.IsNullOrEmpty(propertyListing.Title) ||
+            string.IsNullOrEmpty(propertyListing.Description) ||
+            string.IsNullOrEmpty(propertyListing.Date.ToString()) ||
+            propertyListing.Price < 0 ||
+            string.IsNullOrEmpty(propertyListing.ImageFileName) ||
+            propertyListing.M2 < 0 ||
+            propertyListing.RoomCount < 0 ||
+            propertyListing.Age <= 0 ||
+            propertyListing.Floor == null ||
+            string.IsNullOrEmpty(propertyListing.HeatingType) ||
+            string.IsNullOrEmpty(propertyListing.BuildingType)
+            )
+        {
+            return BadRequest("Required data is missing");
+
+        }
+
+        try
+        {
+            await _savelistingservice.SaveListingProperty(propertyListing);
+            return Ok("Listing saved successfully.");
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.Message);
+        }
+    }
+
+    [HttpPost("saveikinciel")]
+    public async Task<IActionResult> SaveListingIkinci_El([FromBody] Ikinci_ElListing ikinci_ElListing)
+    {
+        if (ikinci_ElListing == null)
+        {
+            return BadRequest("Invalid listing data");
+        }
+
+        if (string.IsNullOrEmpty(ikinci_ElListing.Category) ||
+            ikinci_ElListing.Category != "İkinci El" ||
+            string.IsNullOrEmpty(ikinci_ElListing.Title) ||
+            string.IsNullOrEmpty(ikinci_ElListing.Description) ||
+            string.IsNullOrEmpty(ikinci_ElListing.Date.ToString()) ||
+            ikinci_ElListing.Price < 0 ||
+            string.IsNullOrEmpty(ikinci_ElListing.ImageFileName) ||
+            string.IsNullOrEmpty(ikinci_ElListing.Type) ||
+            string.IsNullOrEmpty(ikinci_ElListing.Brand) ||
+            string.IsNullOrEmpty(ikinci_ElListing.Condition)
+            )
+        {
+            return BadRequest("Required data is missing");
+        }
+
+        try
+        {
+            await _savelistingservice.SaveListingIkinci_El(ikinci_ElListing);
+            return Ok("Listing saved successfully.");
         }
         catch (Exception e)
         {
@@ -133,5 +216,17 @@ public class ListingController : ControllerBase
         }
     }
 
+    [HttpGet("brand/{brand}")]
+    public async Task<IActionResult> GetListingBrand(string Brand)
+    {
+        try
+        {
+            return Ok(await _getlistingsservice.GetListingBrand(Brand));
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.Message);
+        }
+    }
 
 }

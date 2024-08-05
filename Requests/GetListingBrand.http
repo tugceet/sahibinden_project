@@ -1,0 +1,6 @@
+@sahibinden_project_HostAddress = http://localhost:8000
+@brand = Mercedes
+
+
+GET {{sahibinden_project_HostAddress}}/listing/brand/{{brand}}
+

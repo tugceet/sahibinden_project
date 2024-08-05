@@ -1,0 +1,24 @@
+@sahibinden_project_HostAddress = http://localhost:8000
+
+
+POST {{sahibinden_project_HostAddress}}/listing/savecar
+Content-Type: application/json
+
+{
+    "Title": "Öğretmenden temiz araba",
+    "Description": "2 parça lokal boya bakımlı",
+    "Category": "Araba",
+    "Price": 500000,
+    "Date": "2021-06-01",
+    "ImageFileName": "araba.jpg",
+    "Brand": "Mercedes",
+    "Model": "C180",
+    "Year": 2015,
+    "Km": 100000,
+    "FuelType": "Benzin",
+    "GearType": "Otomatik",
+    "Color": "Beyaz",
+    "EngineSize": 1600,
+    "HorsePower": 156,
+    "BodyType": "Sedan"
+}

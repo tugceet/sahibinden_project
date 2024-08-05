@@ -8,6 +8,9 @@ public class SahibindenDbContext : DbContext
 
     public DbSet<User> Users => Set<User>();
     public DbSet<Listing> Listings => Set<Listing>();
+    public DbSet<Ikinci_ElListing> Ikinci_ElListings => Set<Ikinci_ElListing>();
+    public DbSet<CarListing> CarListings => Set<CarListing>();
+    public DbSet<PropertyListing> PropertyListings => Set<PropertyListing>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
