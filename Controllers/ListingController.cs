@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using sahibinden_project.DTOs;
 using sahibinden_project.Services;
 
 namespace sahibinden_project;
@@ -135,6 +136,13 @@ public class ListingController : ControllerBase
             return StatusCode(500, e.Message);
         }
     }
+ 
+    [HttpPost("filter")]
+    public async Task<IActionResult> PropertyListings([FromBody] PropertyFilter filter)
+    {
+        var listings = await _getlistingsservice.PropertyListings(filter);
+        return Ok(listings);
+    }
 
     [HttpGet()]
     public async Task<IActionResult> GetListings()
@@ -230,5 +238,6 @@ public class ListingController : ControllerBase
             return StatusCode(500, e.Message);
         }
     }
+
 
 }
