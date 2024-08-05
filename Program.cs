@@ -20,6 +20,9 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddScoped<IListService, ListService>();
     builder.Services.AddScoped<ISaveListingService, SaveListingService>();
     builder.Services.AddScoped<IGetListingsService, GetListingsService>();
+    builder.Services.AddScoped<IDeleteService, DeleteService>();
+    builder.Services.AddScoped<IUpdateListingService, UpdateListingService>();
+    builder.Services.AddScoped<IFavoriteListService, FavoriteListService>();
 }
 
 var app = builder.Build();

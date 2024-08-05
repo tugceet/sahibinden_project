@@ -1,6 +1,6 @@
 ﻿namespace sahibinden_project.Services
 {
-    public class UpdateListingService
+    public class UpdateListingService : IUpdateListingService
     {
 
         private readonly SahibindenDbContext _db;

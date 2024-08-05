@@ -10,17 +10,18 @@ public class UserController : ControllerBase
     private readonly ILoginService _loginService;
     private readonly IListService _listService;
     private readonly IDeleteService _deleteService;
+    private readonly IFavoriteListService _favoriteListService;
     
     
 
-    public UserController(IRegisterService registerService, ILoginService loginService, IListService listService, IDeleteService deleteService
+    public UserController(IRegisterService registerService, ILoginService loginService, IListService listService, IDeleteService deleteService, IFavoriteListService favoriteListService
        )
     {
         _registerService = registerService;
         _loginService = loginService;
         _listService = listService;
         _deleteService = deleteService;
-       
+        _favoriteListService = favoriteListService;     
     }
 
     [HttpPost()]
@@ -151,6 +152,48 @@ public class UserController : ControllerBase
         {
             await _deleteService.DeleteUserByUsername(username);
             return Ok($"User with username {username} deleted successfully.");
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.Message);
+        }
+    }
+
+    [HttpPost("{userId}/favorites/{listingId}")]
+    public async Task<IActionResult> AddFavorite(int userId, int listingId)
+    {
+        try
+        {
+            await _favoriteListService.AddFavorite(userId, listingId);
+            return Ok("Favorite added successfully.");
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.Message);
+        }
+    }
+
+    [HttpDelete("{userId}/favorites/{listingId}")]
+    public async Task<IActionResult> RemoveFavorite(int userId, int listingId)
+    {
+        try
+        {
+            await _favoriteListService.RemoveFavorite(userId, listingId);
+            return Ok("Favorite removed successfully.");
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.Message);
+        }
+    }
+
+    [HttpGet("{userId}/favorites")]
+    public async Task<IActionResult> GetFavorites(int userId)
+    {
+        try
+        {
+            var favorites = await _favoriteListService.GetFavorites(userId);
+            return Ok(favorites);
         }
         catch (Exception e)
         {

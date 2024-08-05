@@ -2,7 +2,7 @@
 
 namespace sahibinden_project.Services
 {
-    public class DeleteService
+    public class DeleteService : IDeleteService
     {
         private readonly SahibindenDbContext _db;
 
