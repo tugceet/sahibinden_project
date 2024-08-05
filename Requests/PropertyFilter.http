@@ -1,0 +1,24 @@
+@sahibinden_project_HostAddress = http://localhost:8000
+
+
+POST {{sahibinden_project_HostAddress}}/listing/filter
+Content-Type: application/json
+
+{
+    "M2": null,
+    "RoomCount": null,
+    "Age": null,
+    "HeatingType": null,
+    "BuildingType": null,
+    "Floor": null,
+    "MinPrice": null,
+    "MaxPrice": null,
+    "Location": "İstanbul",
+    "Status": null,
+    //-------------------//
+    "Category": null,
+    "Title": null,
+    "Description": null,
+    "Date": null,
+    "ImageFileName": null
+}
