@@ -11,4 +11,6 @@ public class PropertyListing : Listing
     public string? HeatingType { get; set; }
     public string? BuildingType { get; set; }
     public int Floor { get; set; }
+    public string? Status { get; set; }
+    public string? Location { get; set; }
 }

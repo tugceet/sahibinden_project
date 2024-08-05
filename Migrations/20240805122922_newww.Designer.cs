@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using sahibinden_project;
 
@@ -10,9 +11,11 @@ using sahibinden_project;
 namespace sahibinden_project.Migrations
 {
     [DbContext(typeof(SahibindenDbContext))]
-    partial class SahibindenDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240805122922_newww")]
+    partial class newww
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.7");

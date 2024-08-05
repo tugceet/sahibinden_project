@@ -5,16 +5,18 @@ POST {{sahibinden_project_HostAddress}}/listing/saveproperty
 Content-Type: application/json
 
 {
-    "Title": "Öğretmenden temiz Ev",
-    "Description": "Merkeze yakın öğretmen evi",
+    "Title": "Öğrenciden Pis Ev",
+    "Description": "Merkeze Uzak Öğrenci evi",
     "Category": "Emlak",
-    "Price": 500000,
+    "Price": 200000,
     "Date": "2021-06-01",
-    "ImageFileName": "ev.jpg",
-    "M2": 100,
-    "RoomCount": 3,
-    "Age": 5,
-    "Floor": 2,
-    "HeatingType": "Kombi",
-    "BuildingType": "Betonarme"
+    "ImageFileName": "ev2.jpg",
+    "M2": 10,
+    "RoomCount": 1,
+    "Age": 50,
+    "Floor": -3,
+    "HeatingType": "Sobalı",
+    "BuildingType": "Kumdan",
+    "Location": "İstanbul/Silivri",
+    "Status": "Kiralık"  
 }

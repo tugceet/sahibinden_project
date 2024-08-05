@@ -79,6 +79,8 @@ public class ListingController : ControllerBase
             string.IsNullOrEmpty(propertyListing.ImageFileName) ||
             propertyListing.M2 < 0 ||
             propertyListing.RoomCount < 0 ||
+            string.IsNullOrEmpty(propertyListing.Location) ||
+            string.IsNullOrEmpty(propertyListing.Status) ||
             propertyListing.Age <= 0 ||
             propertyListing.Floor == null ||
             string.IsNullOrEmpty(propertyListing.HeatingType) ||
