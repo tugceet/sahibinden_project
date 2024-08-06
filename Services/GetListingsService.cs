@@ -84,7 +84,7 @@ namespace sahibinden_project.Services
                 query = query.Where(l => l.Status.Contains(filter.Location));
 
             if (!string.IsNullOrEmpty(filter.Location))
-                query = query.Where(l => l.Location == filter.Location);
+                query = query.Where(l => l.Location.Contains(filter.Location));
 
             if (filter.MinPrice.HasValue)
                 query = query.Where(l => l.Price >= filter.MinPrice.Value && l.Price <= filter.MaxPrice);
