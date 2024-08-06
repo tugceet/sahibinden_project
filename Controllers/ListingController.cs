@@ -184,11 +184,11 @@ public class ListingController : ControllerBase
     }
 
     [HttpGet("category/{category}")]
-    public async Task<IActionResult> GetListing(string Category)
+    public async Task<IActionResult> GetListings(string Category)
     {
         try
         {
-            return Ok(await _getlistingsservice.GetListing(Category));
+            return Ok(await _getlistingsservice.GetListings(Category));
         }
         catch (Exception e)
         {

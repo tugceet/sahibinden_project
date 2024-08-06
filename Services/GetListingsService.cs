@@ -38,14 +38,11 @@ namespace sahibinden_project.Services
             return listing;
         }
 
-        public async Task<Listing> GetListing(string Category)
+        public async Task<List<Listing>> GetListings(string Category)
         {
-            var listing = await _db.Listings.FirstOrDefaultAsync(u => u.Category == Category);
-            if (listing == null)
-            {
-                throw new Exception("Null");
-            }
-            return listing;
+            return await _db.Listings
+            .Where(u => u.Category == Category)
+            .ToListAsync();
         }
 
         public async Task<Listing> GetListingBrand(string Brand)

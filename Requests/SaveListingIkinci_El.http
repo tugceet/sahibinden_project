@@ -5,6 +5,14 @@ POST {{sahibinden_project_HostAddress}}/listing/saveikinciel
 Content-Type: application/json
 
 {
+    "Title": "Güneş Gözlüğü",
+    "Description": "Dolce Gabbana güneş güzlüğü",
+    "Category": "ikinci_el",
+    "Price": 2000,
+    "Date": "2023-07-01",
+    "ImageFileName": "gözlük.jpg",
+    "Brand": "Dolce Gabbana",
+    "Type": "Aksesuar",
     "Title": "Hiç giyilmemiş Versace Elbise",
     "Description": "hiç giymedim",
     "Category": "ikinci_el",
