@@ -144,6 +144,19 @@ public class ListingController : ControllerBase
         return Ok(listings);
     }
 
+    [HttpPost("filtercars")]
+    public async Task<IActionResult> CarListings([FromBody] CarFilter filter)
+    {
+        var listings = await _getlistingsservice.CarListings(filter);
+        return Ok(listings);
+    }
+    [HttpPost("filterikinciel")]
+    public async Task<IActionResult> Ikinci_ElListings([FromBody] Ikinci_ElFilter filter)
+    {
+        var listings = await _getlistingsservice.Ikinci_ElListings(filter);
+        return Ok(listings);
+    }
+
     [HttpGet()]
     public async Task<IActionResult> GetListings()
     {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using sahibinden_project.DTOs;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace sahibinden_project.Services
 {
@@ -80,7 +81,7 @@ namespace sahibinden_project.Services
                 query = query.Where(l => l.Floor == filter.Floor.Value);
 
             if (!string.IsNullOrEmpty(filter.Status))
-                query = query.Where(l => l.Status == filter.Status);
+                query = query.Where(l => l.Status.Contains(filter.Location));
 
             if (!string.IsNullOrEmpty(filter.Location))
                 query = query.Where(l => l.Location == filter.Location);
@@ -91,10 +92,70 @@ namespace sahibinden_project.Services
             return await query.ToListAsync();
         }
 
+        public async Task<List<CarListing>> CarListings(CarFilter filter)
+        {
+            var query = _db.CarListings.AsQueryable();
 
+            if (!string.IsNullOrEmpty(filter.Brand))
+                query = query.Where(l => l.Brand == filter.Brand);
 
+            if (!string.IsNullOrEmpty(filter.Model))
+                query = query.Where(l => l.Model == filter.Model);
 
+            if (filter.Year.HasValue)
+                query = query.Where(l => l.Year == filter.Year.Value);
 
+            if (filter.MinKm.HasValue)
+                query = query.Where(l => l.Price >= filter.MinKm.Value && l.Price <= filter.MaxKm);
+
+            if (!string.IsNullOrEmpty(filter.FuelType))
+                query = query.Where(l => l.FuelType == filter.FuelType);
+
+            if (!string.IsNullOrEmpty(filter.GearType))
+                query = query.Where(l => l.GearType == filter.GearType);
+
+            if (!string.IsNullOrEmpty(filter.Color))
+                query = query.Where(l => l.Color == filter.Color);
+
+            if (filter.MinPrice.HasValue)
+                query = query.Where(l => l.Price >= filter.MinPrice.Value && l.Price <= filter.MaxPrice);
+
+            if (!string.IsNullOrEmpty(filter.BodyType))
+                query = query.Where(l => l.BodyType == filter.BodyType);
+
+            return await query.ToListAsync();
+        }
+
+        public async Task<List<Ikinci_ElListing>> Ikinci_ElListings(Ikinci_ElFilter filter)
+        {
+            var query = _db.Ikinci_ElListings.AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter.Title))
+                query = query.Where(l => l.Title.Contains(filter.Title));
+
+            if (!string.IsNullOrEmpty(filter.Description))
+                query = query.Where(l => l.Description.Contains(filter.Description));
+
+            if (!string.IsNullOrEmpty(filter.Category))
+                query = query.Where(l => l.Category == filter.Category);
+
+            if (filter.MinPrice.HasValue)
+                query = query.Where(l => l.Price >= filter.MinPrice.Value && l.Price <= filter.MaxPrice);
+
+            if (!string.IsNullOrEmpty(filter.Date))
+                query = query.Where(l => l.Date == filter.Date);
+
+            if (!string.IsNullOrEmpty(filter.Brand))
+                query = query.Where(l => l.Brand == filter.Brand);
+
+            if (!string.IsNullOrEmpty(filter.Type))
+                query = query.Where(l => l.Type == filter.Type);
+
+            if (!string.IsNullOrEmpty(filter.Condition))
+                query = query.Where(l => l.Condition == filter.Condition);
+
+            return await query.ToListAsync();
+        }
     }    
 }
 
