@@ -15,7 +15,6 @@ Content-Type: application/json
     "MaxPrice": null,
     "Location": "İstanbul",
     "Status": null,
-    //-------------------//
     "Category": null,
     "Title": null,
     "Description": null,

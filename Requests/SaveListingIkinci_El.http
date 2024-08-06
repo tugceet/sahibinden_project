@@ -5,13 +5,13 @@ POST {{sahibinden_project_HostAddress}}/listing/saveikinciel
 Content-Type: application/json
 
 {
-    "Title": "Hiç giyilmemiş Gelinlik",
-    "Description": "Tüllü straplez kocamdan ayrıldım satıyorum",
-    "Category": "İkinci El",
-    "Price": 500000,
+    "Title": "Hiç giyilmemiş Versace Elbise",
+    "Description": "hiç giymedim",
+    "Category": "ikinci_el",
+    "Price": 1000000,
     "Date": "2021-06-01",
-    "ImageFileName": "gelinlik.jpg",
-    "Brand": "Vakko",
+    "ImageFileName": "elbise.jpg",
+    "Brand": "Versace",
     "Type": "Giyim",
     "Condition": "Yeni"
 }

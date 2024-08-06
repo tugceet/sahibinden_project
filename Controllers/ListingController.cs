@@ -32,7 +32,7 @@ public class ListingController : ControllerBase
         }
 
         if (string.IsNullOrEmpty(carListing.Category) ||
-            carListing.Category != "Araba" ||
+            carListing.Category != "araba" ||
             string.IsNullOrEmpty(carListing.Title) ||
             string.IsNullOrEmpty(carListing.Description) ||
             string.IsNullOrEmpty(carListing.Date.ToString()) ||
@@ -40,13 +40,13 @@ public class ListingController : ControllerBase
             string.IsNullOrEmpty(carListing.ImageFileName) ||
             string.IsNullOrEmpty(carListing.Brand) ||
             string.IsNullOrEmpty(carListing.Model) ||
-            carListing.Year <= 0||
-            carListing.Km <= 0||
+            carListing.Year < 0||
+            carListing.Km < 0||
             string.IsNullOrEmpty(carListing.Color) ||
             string.IsNullOrEmpty(carListing.FuelType) ||
             string.IsNullOrEmpty(carListing.GearType) ||
-            carListing.EngineSize <= 0||
-            carListing.HorsePower <= 0
+            carListing.EngineSize < 0||
+            carListing.HorsePower < 0
             )
         {
             return BadRequest("Required data is missing");
@@ -72,7 +72,7 @@ public class ListingController : ControllerBase
         }
 
         if (string.IsNullOrEmpty(propertyListing.Category) ||
-            propertyListing.Category != "Emlak" ||
+            propertyListing.Category != "emlak" ||
             string.IsNullOrEmpty(propertyListing.Title) ||
             string.IsNullOrEmpty(propertyListing.Description) ||
             string.IsNullOrEmpty(propertyListing.Date.ToString()) ||
@@ -82,7 +82,7 @@ public class ListingController : ControllerBase
             propertyListing.RoomCount < 0 ||
             string.IsNullOrEmpty(propertyListing.Location) ||
             string.IsNullOrEmpty(propertyListing.Status) ||
-            propertyListing.Age <= 0 ||
+            propertyListing.Age < 0 ||
             propertyListing.Floor == null ||
             string.IsNullOrEmpty(propertyListing.HeatingType) ||
             string.IsNullOrEmpty(propertyListing.BuildingType)
@@ -112,7 +112,7 @@ public class ListingController : ControllerBase
         }
 
         if (string.IsNullOrEmpty(ikinci_ElListing.Category) ||
-            ikinci_ElListing.Category != "İkinci El" ||
+            ikinci_ElListing.Category != "ikinci_el" ||
             string.IsNullOrEmpty(ikinci_ElListing.Title) ||
             string.IsNullOrEmpty(ikinci_ElListing.Description) ||
             string.IsNullOrEmpty(ikinci_ElListing.Date.ToString()) ||
