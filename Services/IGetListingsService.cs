@@ -6,7 +6,7 @@ namespace sahibinden_project.Services
     {
         public Task<List<Listing>> GetListings();
         public Task<Listing> GetListing(int id);
-        public Task<Listing> GetListing(string Category);
+        public Task<List<Listing>> GetListings(string Category);
         public Task<Listing> GetListingBrand(string Brand);
         public Task<List<PropertyListing>> PropertyListings(PropertyFilter filter);
         public Task<List<CarListing>> CarListings(CarFilter filter);
