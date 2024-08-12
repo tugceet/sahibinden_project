@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 public class FileUploadService : IFileUpload
 {
     private readonly string _uploadDirectory;
+    private static int _fileCounter = 1; // Statik sayaç, tüm uygulama için geçerli
+
+    // Bu özellik, en son yüklenen dosyanın adını saklar
+    public string UploadFileName { get; private set; }
 
     public FileUploadService()
     {
@@ -23,14 +27,33 @@ public class FileUploadService : IFileUpload
             return null;
         }
 
-        var filePath = Path.Combine(_uploadDirectory, file.FileName);
+        // Dosya uzantısını al
+        var fileExtension = Path.GetExtension(file.FileName);
 
+        // Benzersiz dosya adını oluştur
+        UploadFileName = GenerateUniqueFileName(fileExtension);
+
+        // Dosya yolunu oluştur
+        var filePath = Path.Combine(_uploadDirectory, UploadFileName);
+
+        // Dosyayı kaydet
         using (var stream = new FileStream(filePath, FileMode.Create))
         {
             await file.CopyToAsync(stream);
         }
 
         // Fotoğrafın web üzerinden erişilebilir URL'sini döndür
-        return $"/uploads/{file.FileName}";
+        return $"/uploads/{UploadFileName}";
+    }
+
+    private string GenerateUniqueFileName(string fileExtension)
+    {
+        // Benzersiz dosya adını oluştur
+        var fileName = $"filename{_fileCounter}{fileExtension}";
+
+        // Sayaç değerini artır
+        _fileCounter++;
+
+        return fileName;
     }
 }

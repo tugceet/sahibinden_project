@@ -12,6 +12,8 @@ public class SaveListingService : ISaveListingService
 
     public async Task SaveListingCar(CarListing carListing)
     {
+        // dto ile image file name hariç kaydet
+
         _db.CarListings.Add(carListing);
         await _db.SaveChangesAsync();
     }

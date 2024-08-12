@@ -2,7 +2,7 @@
 {
     public interface IFileUpload
     {
-        Task<string> UploadFileAsync(IFormFile file);
+        Task<string> UploadFileAsync(IFormFile file );
     }
 
 }

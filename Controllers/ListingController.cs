@@ -33,10 +33,15 @@ public class ListingController : ControllerBase
         }
 
         var filePath = await _fileUpload.UploadFileAsync(file);
-        return Ok(new { FilePath = filePath });
+
+        // Yeni dosya adını al
+        var newFileName = (_fileUpload as FileUploadService)?.UploadFileName;
+
+        return Ok(new { FilePath = filePath, FileName = newFileName });
     }
 
-    
+
+
 
     [HttpPost("savecar")]
     public async Task<IActionResult> SaveListingCar([FromBody] CarListing carListing)
