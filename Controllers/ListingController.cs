@@ -13,16 +13,31 @@ public class ListingController : ControllerBase
     private readonly IGetListingsService _getlistingsservice;
     private readonly IUpdateListingService _updatelistingsservice;
     private readonly IDeleteService _deletelistingsservice;
+    private readonly IFileUpload _fileUpload;
 
-    public ListingController(ISaveListingService savelistingservice, IGetListingsService getlistingsservice, IUpdateListingService updateListingService, IDeleteService deleteService)
+    public ListingController(ISaveListingService savelistingservice, IGetListingsService getlistingsservice, IUpdateListingService updateListingService, IDeleteService deleteService, IFileUpload fileUpload)
     {
         _savelistingservice = savelistingservice;
         _getlistingsservice = getlistingsservice;
         _updatelistingsservice = updateListingService;
         _deletelistingsservice = deleteService;
+        _fileUpload = fileUpload;
+    }
+
+    [HttpPost("upload")]
+    public async Task<IActionResult> UploadFile(IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+        {
+            return BadRequest("Geçersiz dosya");
+        }
+
+        var filePath = await _fileUpload.UploadFileAsync(file);
+        return Ok(new { FilePath = filePath });
     }
 
     
+
     [HttpPost("savecar")]
     public async Task<IActionResult> SaveListingCar([FromBody] CarListing carListing)
     {
